@@ -5,15 +5,23 @@ Numerical Data:
 **•	Scaling (library used: MinMaxScaler):** The numerical attribute 100g_USD (price per 100 grams of coffee) was scaled using MinMaxScaler. This normalization ensures that the price feature contributes appropriately to the model without biasing it due to scale differences compared to other features.
 Categorical Data:
 **•	One-Hot Encoding (library used: OneHotEncoder)**: Categorical attributes such as roaster, roast, and origin were transformed using OneHotEncoder. This method was chosen because it effectively turns categorical variables into a form that can be provided to machine learning algorithms, helping to capture the essence of categorical data without imposing ordinality.
+
 •	Handling Unknown Categories: The encoder was set with handle_unknown='ignore' to ensure that any new categories in the test dataset, not present in the training dataset, wouldn't cause errors during model predictions.
+
 Textual Data:
+
 •	TF-IDF Vectorization (Library used: TfidfVectorizer) The text reviews were processed using TfidfVectorizer. This technique converts text data into a matrix of TF-IDF features. It reflects the importance of words relative to the document and the entire corpus, which is ideal for capturing the essence of text data in numerical form.
+
 Logic Behind Feature Selection:
+
 •	Rational Selection Based on Data Type: The choice of preprocessing techniques was based on the nature of each data type. For instance, numerical data were normalized to prevent features with larger scales from dominating the model's behavior. Categorical data were one-hot encoded to preserve their non-ordinal nature, and textual data were transformed into a weighted vector format to highlight the importance of less frequent but more significant words.
 Explanation of method and implementation: 
 For this project, a Naive Bayes classification method was implemented using scikit-learn, a powerful library for machine learning in Python. The choice of Naive Bayes was driven by its effectiveness with textual data and its simplicity and speed in handling categorical data. Here’s how the method and implementation were structured:
+
 Implementation Details:
+
 Multinomial Naive Bayes: 
+
 •	Model Choice: Multinomial Naive Bayes was selected as it is particularly well-suited for classification with features that represent counts or frequency data — a common scenario when dealing with text data transformed via TF-IDF vectorization.
 •	Pipeline Integration: A pipeline was constructed combining preprocessing steps with the Naive Bayes classifier. This streamlined the process from raw data inputs through to predictions, ensuring that all data transformations remained consistent across both training and testing phases.
 Pipeline Configuration:
