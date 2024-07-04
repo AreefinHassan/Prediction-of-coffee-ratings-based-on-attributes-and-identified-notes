@@ -2641,3 +2641,4 @@ Handling Different Data Types: Integrating numerical, categorical, and textual d
 Limited Impact of Some Features: Selecting features systematically for a Naive Bayes classifier was challenging. Adding certain features like 100g_USD did not significantly improve the model's performance as expected. This indicated that not all features contributed equally to the predictive task, and some features that were hypothesized to be important (like price) did not provide significant leverage. 
 
 https://github.com/AreefinHassan/Prediction-of-coffee-ratings-based-on-attributes-and-identified-notes/issues/1#issue-2389737726
+https://github.com/AreefinHassan/Prediction-of-coffee-ratings-based-on-attributes-and-identified-notes/issues/1#issuecomment-2207789068
