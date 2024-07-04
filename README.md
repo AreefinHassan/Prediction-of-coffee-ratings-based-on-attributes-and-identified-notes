@@ -2643,3 +2643,4 @@ Limited Impact of Some Features: Selecting features systematically for a Naive B
 https://github.com/AreefinHassan/Prediction-of-coffee-ratings-based-on-attributes-and-identified-notes/issues/1#issue-2389737726
 https://github.com/AreefinHassan/Prediction-of-coffee-ratings-based-on-attributes-and-identified-notes/issues/1#issuecomment-2207789068
 https://github.com/AreefinHassan/Prediction-of-coffee-ratings-based-on-attributes-and-identified-notes/issues/1#issue-2389737726
+![https://github.com/AreefinHassan/Prediction-of-coffee-ratings-based-on-attributes-and-identified-notes/issues/1#issue-2389737726]
