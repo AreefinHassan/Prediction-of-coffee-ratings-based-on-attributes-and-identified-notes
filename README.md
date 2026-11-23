@@ -1,6 +1,18 @@
 # Prediction of Coffee Ratings Based on Attributes and Identified Notes
 
+![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-1.x-orange?logo=scikit-learn&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange?logo=jupyter&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
+
 A machine-learning project that predicts coffee quality — outstanding vs. average — from a coffee's attributes (roaster, roast level, origin, price) and its tasting notes. The model is a Multinomial Naive Bayes classifier in a scikit-learn pipeline, evaluated with 5-fold cross-validation using the F1 score.
+
+## Key Results
+
+- **Validation F1: 0.906** (training F1: 0.956) — full model on 620 training coffees, 5-fold cross-validation
+- **Tasting notes carry almost all of the signal:** adding the review text lifts validation F1 from **0.829 → 0.906**
+- **Price adds nothing further:** adding price per 100 g leaves validation F1 unchanged at 0.906
+- **Top predictors of an outstanding coffee:** Medium-Light roast, Ethiopian origin, Kakalove Cafe, and the tasting note "juicy"
 
 ## Authors
 
@@ -29,7 +41,13 @@ The tasting notes carry almost all of the signal: adding the review text lifts v
 - **Roasters:** Kakalove Cafe, Paradise Roasters, Hula Daddy Kona Coffee
 - **Tasting note:** "juicy"
 
-Average coffees lean toward Medium roast, Guatemalan origin, and notes like "brisk", "baking", and "velvety". Word clouds of the most influential terms for each class are in the full report.
+Average coffees lean toward Medium roast, Guatemalan origin, and notes like "brisk", "baking", and "velvety".
+
+![Word cloud of the most influential features for outstanding coffee](images/wordcloud-outstanding.png)
+*Most influential features for outstanding coffee (class 1): Medium-Light roast, Ethiopian origin, Kakalove Cafe, and "juicy" tasting notes.*
+
+![Word cloud of the most influential features for average coffee](images/wordcloud-average.png)
+*Most influential features for average coffee (class 0): Medium roast, Guatemalan origin, and notes like "brisk", "baking", and "velvety".*
 
 ## Method
 
@@ -42,6 +60,9 @@ A single scikit-learn `Pipeline` combines preprocessing and classification, so t
 
 All three feature types are joined with a `ColumnTransformer`. The model was trained on 620 coffees and evaluated with 5-fold cross-validation (`cross_val_score`, `cross_validate`).
 
+![scikit-learn pipeline: MinMaxScaler on price, OneHotEncoder on roaster/roast/origin, TF-IDF on review text, feeding a MultinomialNB classifier](images/pipeline.png)
+*The full pipeline: price is scaled, categorical attributes are one-hot encoded, tasting notes are TF-IDF vectorized, and a Multinomial Naive Bayes classifier makes the prediction.*
+
 ## Data
 
 | File | Contents |
@@ -53,26 +74,7 @@ All three feature types are joined with a `ColumnTransformer`. The model was tra
 
 The training labels (`y_train.csv`) are not in this repo yet and will be added when available.
 
-## Repository layout
-
-```
-├── DataMiningProject.ipynb          # Full analysis notebook (preprocessing, pipeline, CV, word clouds)
-├── README.md
-├── data/
-│   ├── X_train.csv                  # Training features (620 rows)
-│   ├── X_test.csv                   # Test features (267 rows)
-│   ├── format.csv                   # Submission format
-│   ├── result.csv                   # Model predictions for the test set
-│   └── README.md                    # Data dictionary
-├── report/
-│   ├── Project_Report.pdf           # Full 9-page project report
-│   ├── Project_Report.docx
-│   └── Coffee_Rating_Writeup.pdf    # Condensed 3-page write-up
-└── notebooks/
-    └── DataMiningProject_Colab_Printout.pdf   # Printable Colab export of the notebook
-```
-
-## Run it
+## How to Run
 
 ```bash
 pip install pandas numpy scikit-learn wordcloud
@@ -80,3 +82,31 @@ jupyter notebook DataMiningProject.ipynb
 ```
 
 The notebook loads the CSVs from `data/` and reproduces the pipeline, cross-validation, feature-importance tables, and word clouds.
+
+## Repository layout
+
+```
+├── DataMiningProject.ipynb          # Full analysis notebook (preprocessing, pipeline, CV, word clouds)
+├── README.md
+├── LICENSE
+├── data/
+│   ├── X_train.csv                  # Training features (620 rows)
+│   ├── X_test.csv                   # Test features (267 rows)
+│   ├── format.csv                   # Submission format
+│   ├── result.csv                   # Model predictions for the test set
+│   └── README.md                    # Data dictionary
+├── images/
+│   ├── pipeline.png                 # scikit-learn pipeline diagram
+│   ├── wordcloud-outstanding.png    # Top features for outstanding coffee
+│   └── wordcloud-average.png        # Top features for average coffee
+├── report/
+│   ├── Project_Report.pdf           # Full 9-page project report
+│   ├── Project_Report.docx
+│   └── Coffee_Rating_Writeup.pdf    # Condensed write-up
+└── notebooks/
+    └── DataMiningProject_Colab_Printout.pdf   # Printable Colab export of the notebook
+```
+
+## License
+
+This project is licensed under the MIT License — see [LICENSE](LICENSE).
